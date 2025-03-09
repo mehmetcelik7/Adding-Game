@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Adding Game
+
+  Created by mehmet Çelik on 9.03.2025.
+  
+*/
+
+"Game Over" = "Partie Terminée";
+"Score" = "Score";
+"Level" = "Niveau";
+"Game" = "Jeu";
+"High Scores" = "Meilleurs Scores";
+"Rank" = "Classement";
+"Name" = "Nom";
+"Save" = "Enregistrer";
+
+"New High Score!" = "TODO: Translate nhs";
+"Anon" = "TODO: Anon";
+

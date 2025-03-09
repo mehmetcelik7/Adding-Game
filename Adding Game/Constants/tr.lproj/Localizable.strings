@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Adding Game
+
+  Created by mehmet Çelik on 9.03.2025.
+  
+*/
+"Game Over" = "Oyun Bitti";
+"Score" = "Puan";
+"Level" = "Seviye";
+"Game" = "Oyun";
+"High Scores" = "En Yüksek Puanlar";
+"Rank" = "Sıralama";
+"Name" = "Ad";
+"Save" = "Kaydet";
+
+"New High Score!" = "New High Score!";
+"Anon" = "Anon";
+
