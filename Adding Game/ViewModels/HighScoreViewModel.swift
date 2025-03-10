@@ -15,6 +15,15 @@ class HighScoreViewModel : ObservableObject {
     
     @Published var highScores: [HighScoreEntity] = []
     
+    let MAX_NUM_HIGHSCORES = 100
+    var minHighScore: Int64? {
+        if highScores.isEmpty {
+            return nil
+        }else{
+            return highScores.last?.score
+        }
+    }
+    
     init() {
         container = NSPersistentContainer(name: "HighScoreDataModel")
         
@@ -29,6 +38,16 @@ class HighScoreViewModel : ObservableObject {
                 
             }
       
+    }
+    
+    func isNewHighScore(score: Int) -> Bool {
+        if score <= 0 {
+            return false
+        }else if let minHighScore {
+            return minHighScore < score || highScores.count <= MAX_NUM_HIGHSCORES
+        }else{
+            return true
+        }
     }
     
     func fetchHighScores(){

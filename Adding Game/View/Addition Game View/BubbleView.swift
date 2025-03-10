@@ -49,6 +49,8 @@ struct BubbleView: View {
     VStack{
         BubbleView(textColor: .white, bgColor: .purple.opacity(0.4), name: "bubble", text: "25")
         BubbleView(textColor: .white, bgColor: .purple.opacity(0.4), name: "bubble1", text: "25")
+        BubbleView(textColor: .white, bgColor: .purple.opacity(0.4), name: "bubble1", text: "25")
+        BubbleView(textColor: .white, bgColor: .purple.opacity(0.4), name: "bubble1", text: "25")
         BubbleView(textColor: .white, bgColor: .purple.opacity(0.4), name: "bubble2", text: "25")
     }
 }
