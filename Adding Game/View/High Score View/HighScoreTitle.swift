@@ -9,9 +9,20 @@ import SwiftUI
 
 struct HighScoreTitle: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        HStack{
+            VTextImage(imageName: "creature0", text: "Rank", dim: 25)
+            VTextImage(imageName: "creature1", text: "Score", dim: 25)
+            VTextImage(imageName: "creature2", text: "Name", dim: 25)
+
+
+        }
+        .padding(.horizontal)
     }
 }
+
+
+
 
 #Preview {
     HighScoreTitle()

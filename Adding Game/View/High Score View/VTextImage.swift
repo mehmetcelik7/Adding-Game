@@ -7,12 +7,32 @@
 
 import SwiftUI
 
+
 struct VTextImage: View {
+    
+    let imageName: String
+    let text: LocalizedStringKey
+    let dim: Double
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 0) {
+            
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: dim,height: dim)
+            
+            Text(text)
+                .fixedSize(horizontal: true, vertical: false)
+                .font(.headline)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+            
+        }
+        .frame(maxWidth: .infinity)
     }
 }
-
 #Preview {
-    VTextImage()
+    VTextImage(imageName: "creature0", text: "Rank", dim: 50)
 }
