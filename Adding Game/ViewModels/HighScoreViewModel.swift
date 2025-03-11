@@ -97,6 +97,11 @@ class HighScoreViewModel : ObservableObject {
         saveHighScore()
     }
     
+    func deleteScore(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return}
+        let entity = highScores[index]
+        deleteHighScore(entity: entity)
+    }
 
         
 }
