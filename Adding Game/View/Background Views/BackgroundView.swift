@@ -12,7 +12,7 @@ struct BackgroundView: View {
     let opacity: Double
     
     var body: some View {
-        LinearGradient(colors: colorList, startPoint: .topTrailing, endPoint: .bottomTrailing)
+        LinearGradient(colors: colorList, startPoint: .topLeading, endPoint: .bottomTrailing)
             .ignoresSafeArea()
             .opacity(opacity)
     }
@@ -20,7 +20,7 @@ struct BackgroundView: View {
 
 struct GameBackgroundView: View {
     var body: some View {
-        BackgroundView(colorList: [.purple,.pink,.clear], opacity: 0.7)
+        BackgroundView(colorList: [.red,.yellow,.blue,.pink], opacity: 0.7)
     }
 }
 

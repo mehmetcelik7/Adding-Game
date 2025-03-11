@@ -41,7 +41,7 @@ struct AdditionGameView: View {
                 BubbleView(
                     textColor: .white,
                     bgColor: Color.purple.opacity(0.7),
-                    name: "bubble2",
+                    name: "bubble1",
                     text: "\(gameVM.number1) + \(gameVM.number2)")
                 
                 

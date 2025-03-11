@@ -52,9 +52,9 @@ struct SelecButton: View {
     var body: some View {
         
         BubbleView(
-            textColor: .black,
+            textColor: .white,
             bgColor: color,
-            name: "bubble2",
+            name: "bubble1",
             text: "\(option)")
         .scaleEffect(scale)
         .onTapGesture {
