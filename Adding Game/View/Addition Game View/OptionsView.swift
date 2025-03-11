@@ -19,10 +19,10 @@ struct OptionsView: View {
         LazyVGrid(columns: columns) {
             ForEach(gameVM.possibleSolutions, id: \.self) { option in
                 
-                let cheatColor: Color = option == gameVM.answer ? .red : .black
+               
                 
                 BubbleView(
-                    textColor: cheatColor,
+                    textColor: .black,
                     bgColor: .purple.opacity(0.7),
                     name: "bubble2",
                     text: "\(option)")
