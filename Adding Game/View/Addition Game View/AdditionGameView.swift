@@ -12,11 +12,10 @@ struct AdditionGameView: View {
 //    
 //    @Environment(HighScoreViewModel.self) private var highScoreVM: HighScoreViewModel
     
-    @Query private var highScores: [HighScoreEntity] = []
+    @Query(sort: [SortDescriptor(\HighScoreEntity.score, order: .reverse)])
+    private var highScores: [HighScoreEntity]
     
-    var orderedHighScore: [HighScoreEntity] {
-        highScores.sorted { $0.score > $1.score }
-    }
+   
     
     let MAX_NUM_HIGHSCORES = 100
     var minHighScore: Int? {
@@ -24,7 +23,7 @@ struct AdditionGameView: View {
             return nil
         }else{
             //TODO: Check this!!!!
-            return orderedHighScore.last?.score
+            return highScores.last?.score
         }
     }
     

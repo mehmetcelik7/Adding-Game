@@ -9,12 +9,10 @@ import SwiftData
 struct HighScoreView: View {
     
 
+    @Query(sort: [SortDescriptor(\HighScoreEntity.score, order: .reverse)])
+     private var highScore: [HighScoreEntity]
     
-    @Query private var highScore: [HighScoreEntity] = []
     
-    var orderedHighScore: [HighScoreEntity] {
-        highScore.sorted { $0.score > $1.score }
-    }
     
     @Environment(\.modelContext) var modelContext
     
@@ -67,7 +65,8 @@ struct RankScoreView: View {
     @State private var editMode = false
 
     
-    @Query private var highScores: [HighScoreEntity] = []
+    @Query(sort: [SortDescriptor(\HighScoreEntity.score, order: .reverse)])
+    private var highScores: [HighScoreEntity]
     @Environment(\.modelContext) var modelContext
     
     
@@ -87,14 +86,8 @@ struct RankScoreView: View {
                     
                     Button(action: {
 
-                        entity.name = name.isEmpty ? (entity.name) : name
-                        do{
-                            try modelContext.save()
-
-                        }catch {
-                            print("Update/save faiulure")
-                        }
-                        
+                        update(entity: entity, name: name)
+                       
                         
                         withAnimation {
                             editMode.toggle()
@@ -126,6 +119,16 @@ struct RankScoreView: View {
                 }
             }
             
+        }
+    }
+    
+    func update(entity: HighScoreEntity,name: String) {
+        entity.name = name.isEmpty ? (entity.name) : name
+        do{
+            try modelContext.save()
+
+        }catch {
+            print("Update/save faiulure")
         }
     }
 }
