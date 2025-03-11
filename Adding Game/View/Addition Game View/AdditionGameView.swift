@@ -6,17 +6,32 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct AdditionGameView: View {
      private var gameVM = AdditionGameViewModel()
+//    
+//    @Environment(HighScoreViewModel.self) private var highScoreVM: HighScoreViewModel
     
-    @Environment(HighScoreViewModel.self) private var highScoreVM: HighScoreViewModel
+    @Query private var highScores: [HighScoreEntity] = []
+    
+    var orderedHighScore: [HighScoreEntity] {
+        highScores.sorted { $0.score > $1.score }
+    }
+    
+    let MAX_NUM_HIGHSCORES = 100
+    var minHighScore: Int? {
+        if highScores.isEmpty {
+            return nil
+        }else{
+            //TODO: Check this!!!!
+            return orderedHighScore.last?.score
+        }
+    }
     
     @State private var highScoreViewIsPresented = false
     
     var showHighScore: Bool {
-        gameVM.gameOver && highScoreVM
-            .isNewHighScore( score: gameVM.score)
+        gameVM.gameOver && isNewHighScore( score: gameVM.score)
     }
     
     @State private var name: String = ""
@@ -77,11 +92,19 @@ struct AdditionGameView: View {
                 highScoreViewIsPresented = showHighScore
             }
     }
+    
+    func isNewHighScore(score: Int) -> Bool {
+        if score <= 0 {
+            return false
+        }else if let minHighScore {
+            return minHighScore < score || highScores.count <= MAX_NUM_HIGHSCORES
+        }else{
+            return true
+        }
+    }
 }
 
-struct AdditionGameView_Previews: PreviewProvider {
-    static var previews: some View {
-        AdditionGameView()
-            .environment(HighScoreViewModel())
-    }
+#Preview {
+    AdditionGameView()
+        .modelContainer(for: HighScoreEntity.self)
 }

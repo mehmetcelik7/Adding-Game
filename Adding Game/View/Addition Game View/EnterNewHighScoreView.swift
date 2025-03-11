@@ -10,7 +10,8 @@ struct EnterNewHighScoreView: View {
     let score: Int
     @Binding var name: String
     @Binding var isPresented: Bool
-    @Environment(HighScoreViewModel.self) private var highScoreVM: HighScoreViewModel
+
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         ZStack {
@@ -40,10 +41,10 @@ struct EnterNewHighScoreView: View {
                 
                 Button(action: {
                     name = name.isEmpty ? "Anon" : name
-                    highScoreVM
-                        .addHighScore(
-                            name: name,
-                            score: Int64(score))
+                   
+                    
+                    modelContext
+                        .insert(HighScoreEntity(name: name, score: score))
                     isPresented = false
                 }, label: {
                     Text("Save")
@@ -66,5 +67,5 @@ struct EnterNewHighScoreView: View {
         name: .constant(""),
         isPresented: .constant(true)
     )
-        .environment(HighScoreViewModel())
+    .modelContainer(for: HighScoreEntity.self)
 }
