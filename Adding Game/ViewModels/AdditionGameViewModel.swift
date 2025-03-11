@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Observation
 
-class AdditionGameViewModel: ObservableObject {
-    @Published var gameModel: GameModel = GameModel.defaultGame
+@Observable class AdditionGameViewModel {
+     var gameModel: GameModel = GameModel.defaultGame
     
     private var problemCount = 0
     let nextLevelBound = 5

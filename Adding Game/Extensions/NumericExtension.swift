@@ -7,11 +7,12 @@
 
 import Foundation
 
-var ordinalFormatter: NumberFormatter = {
+
+let ordinalFormatter: NumberFormatter = {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .ordinal
-    return numberFormatter
     
+    return numberFormatter
 }()
 
 extension Numeric {

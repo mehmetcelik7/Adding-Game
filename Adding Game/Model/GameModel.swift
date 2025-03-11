@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Foundation
+
 struct GameModel: Identifiable {
     let id = UUID()
     var level: Int
@@ -19,7 +21,7 @@ struct GameModel: Identifiable {
         lives == 0
     }
     
-    init(level: Int, score: Int, speed: Int, lives: Int) {
+    init( level: Int, score: Int, speed: Int, lives: Int) {
         self.level = level
         self.score = score
         self.speed = speed
@@ -27,15 +29,21 @@ struct GameModel: Identifiable {
         self.currentProblem = ProblemModel(level: level)
     }
     
-    mutating func updateScore(value: Int) {
-        let isCorrect = currentProblem.checkSolution(value: value)
+    mutating func updateScore( value: Int) {
+        let isCorrect = currentProblem
+            .checkSolution(value: value)
         
         if isCorrect {
             score += level
-        }else{
+        } else {
             lives -= 1
         }
     }
     
-    static let defaultGame = GameModel(level: 1, score: 0, speed: 1, lives: 3)
+    static let defaultGame = GameModel(
+        level: 1,
+        score: 0,
+        speed: 1,
+        lives: 3)
 }
+

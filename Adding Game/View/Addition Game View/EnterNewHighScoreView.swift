@@ -4,58 +4,61 @@
 //
 //  Created by mehmet Çelik on 10.03.2025.
 //
-
 import SwiftUI
 
 struct EnterNewHighScoreView: View {
-    
     let score: Int
     @Binding var name: String
     @Binding var isPresented: Bool
-    @EnvironmentObject private var highScoreVM: HighScoreViewModel
+    @Environment(HighScoreViewModel.self) private var highScoreVM: HighScoreViewModel
     
     var body: some View {
         ZStack {
-            BackgroundView(colorList: [.blue,.purple], opacity: 1)
+            BackgroundView(colorList: [.blue, .purple], opacity: 1)
             VStack {
                 Text("New High Score!")
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .fontWeight(.semibold)
                     .padding()
                 
                 Text("\(score)")
                     .font(.largeTitle)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding()
                 
-                TextField("Enter name", text: $name)
+                TextField("Name", text: $name)
                     .font(.largeTitle)
+                    .foregroundColor(.black)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .autocorrectionDisabled(true)
                     .padding()
-                    .background(.white.opacity(0.8))
+                    .background(Color.white)
                     .cornerRadius(10)
                     .padding()
                 
                 Button(action: {
-                    name = name.isEmpty ? "Anonymous" : name
-                    
-                    highScoreVM.addHighScore(name: name, score: Int64(score))
-                    
+                    name = name.isEmpty ? "Anon" : name
+                    highScoreVM
+                        .addHighScore(
+                            name: name,
+                            score: Int64(score))
+                    isPresented = false
                 }, label: {
                     Text("Save")
                         .font(.title)
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.white)
                         .padding()
-                        .background(.cyan)
-                        .cornerRadius(20)
+                        .background(Color.green)
+                        .cornerRadius(10)
                 })
             }
         }
     }
 }
+
+
 
 #Preview {
     EnterNewHighScoreView(
@@ -63,5 +66,5 @@ struct EnterNewHighScoreView: View {
         name: .constant(""),
         isPresented: .constant(true)
     )
-        .environmentObject(HighScoreViewModel())
+        .environment(HighScoreViewModel())
 }
